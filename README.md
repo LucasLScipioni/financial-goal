@@ -8,7 +8,7 @@ To run the project, first you got to get it's dependencies running the following
 yarn install
 ```
 
-Since this was not meant for build, it uses `VUE_CLI` compiler, to run it locally run:
+Since this was not meant for build it uses `VUE_CLI` default compiler, which has the following commands:
 
 ```
 yarn serve -        Local Server
