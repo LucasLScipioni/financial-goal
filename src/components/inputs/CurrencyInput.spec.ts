@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 
-import CurrencyInput from "@/components/CurrencyInput.vue";
+import { CurrencyInput } from "@/components/inputs";
 
 // @ts-ignore-line
 import { Money } from "v-money";

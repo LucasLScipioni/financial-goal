@@ -1,6 +1,6 @@
 import { shallowMount } from "@vue/test-utils";
 
-import DateInput from "@/components/DateInput.vue";
+import { DateInput } from "@/components/inputs";
 import moment from "moment";
 
 describe("HelloWorld.vue", () => {

@@ -41,9 +41,8 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import moment from "moment";
 
-import CurrencyInput from "@/components/CurrencyInput.vue";
-import GoalInformation from "@/components/GoalInformation.vue";
-import DateInput from "@/components/DateInput.vue";
+import { CurrencyInput, DateInput } from "@/components/inputs";
+import { GoalInformation } from "@/components/display";
 
 @Component({
   components: {

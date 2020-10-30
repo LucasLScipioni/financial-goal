@@ -1,7 +1,7 @@
 import { Vue } from "vue-property-decorator";
 import { shallowMount } from "@vue/test-utils";
 
-import GoalInformation from "@/components/GoalInformation.vue";
+import { GoalInformation } from "@/components/display";
 import moment from "moment";
 import { currency, momentFilter } from '@/assets/filters';
 
