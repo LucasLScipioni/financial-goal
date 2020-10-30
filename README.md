@@ -1,45 +1,26 @@
-# financial-goal
+# Financial Goal App
 
-Since "v-model" is not working correctly on mobile devices ( check this thread for further information: https://github.com/vuejs/vue/issues/8231 ), this
-project uses " :value | v-on:input " to sync data with inputs, working correctly on any device.
+Simple app created to inform that gathers a month and a goal amount to display how much time and money a person got to invest monthly to reach her objetive.
 
-CSS Pattern: http://getbem.com/naming/
-
-Extensions:
-V-money
-vue-class-components
-Vue-property-decorator
-
-## Project setup
+To run the project, first you got to get it's dependencies running the following command:
 
 ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+Since this was not meant for build, it uses `VUE_CLI` compiler, to run it locally run:
 
 ```
-yarn serve
+yarn serve -        Local Server
+yarn test:unit -    Unit Tests
 ```
 
-### Compiles and minifies for production
+Since "v-model" is not working correctly on mobile devices ( check this thread for further information: https://github.com/vuejs/vue/issues/8231 ), this
+project uses " :value | v-on:input " to sync data with inputs, which is not a good pattern but works correctly on any device.
 
-```
-yarn build
-```
+This project used BEM CSS Pattern ( http://getbem.com/naming/ ).
 
-### Run your unit tests
-
-```
-yarn test:unit
-```
-
-### Lints and fixes files
-
-```
-yarn lint
-```
-
-### Customize configuration
-
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Extensions:
+V-money
+vue-class-components
+Vue-property-decorator
