@@ -2,27 +2,33 @@
   <div class="goal">
     <div class="goal__mothly-cost">
       <p class="goal__mothly-cost-title">
-        {{ internationalization["financial-goal-cost-title"] }}
+        {{ languageModule.getStrings["financial-goal-cost-title"] }}
       </p>
       <p class="goal__mothly-cost-title-mobile">
-        {{ internationalization["financial-goal-cost-title-mobile"] }}
+        {{ languageModule.getStrings["financial-goal-cost-title-mobile"] }}
       </p>
       <p class="goal__mothly-cost-value">
         {{ monthlyCost | currency }}
       </p>
     </div>
-    <p class="goal__information">
-      You’re planning
-      <strong>{{ getMonthlyDepositsAmount() }} monthly</strong> deposits to
-      reach your <strong>{{ `$${goalAmount}` }} goal</strong> by
-      <strong>{{ goalDate | moment("MMMM YYYY") }}</strong>
-    </p>
+    <p
+      class="goal__information"
+      v-html="
+        getVariableString(
+          languageModule.getStrings['financial-goal-cost-info'],
+          [getMonthlyDepositsAmount(), goalAmount, getChoosenMonth]
+        )
+      "
+    ></p>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue, Watch } from "vue-property-decorator";
+import { Component, Prop, Vue } from "vue-property-decorator";
 import moment from "moment";
+
+import { getVariableString } from "@/assets/internationalization/lib";
+import { LanguageModule } from "@/store/language/LanguageModule";
 
 @Component({})
 export default class GoalInformation extends Vue {
@@ -32,18 +38,8 @@ export default class GoalInformation extends Vue {
   @Prop({ type: Object, required: true })
   private goalDate!: moment.Moment;
 
-  private moment = this.$options.filters!.moment;
-  private currency = this.$options.filters!.currency;
-
-  private internationalization = {
-    "financial-goal-title": "Let's plan your <strong>saving goal</strong>.",
-    "financial-goal-description": "Saving goal",
-    "total-amount": "Total Amount",
-    "reach-goal-by": "Reach goal By",
-    "financial-goal-cost-title": "Monthly Amount",
-    "financial-goal-cost-title-mobile": "Monthly",
-    confirm: "Confirm",
-  };
+  private languageModule = LanguageModule;
+  private getVariableString = getVariableString;
 
   private getMonthlyDepositsAmount() {
     const today = moment();
@@ -57,6 +53,7 @@ export default class GoalInformation extends Vue {
     }
     const monthsAmount = this.getMonthlyDepositsAmount();
 
+    // eslint-disable-next-line
     const goalAmountToNumber = +this.goalAmount!.replace(/[^0-9]/g, "");
     const cantDivideByZero = monthsAmount === 0;
 
@@ -66,6 +63,12 @@ export default class GoalInformation extends Vue {
 
     const monthlyCostCalculated = goalAmountToNumber / monthsAmount / 100;
     return monthlyCostCalculated.toFixed(2);
+  }
+
+  private get getChoosenMonth() {
+    return this.goalDate
+      .locale(this.languageModule.getCurrentLanguage)
+      .format("MMMM YYYY");
   }
 }
 </script>

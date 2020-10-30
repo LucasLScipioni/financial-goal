@@ -1,7 +1,7 @@
 export function currency(value: string) {
   if (!+value) {
-    return +value === 0 ? `$0` : '';
-  } 
+    return +value === 0 ? `$0` : "";
+  }
   return `$${value}`;
 }
 

@@ -14,7 +14,7 @@
           decimal: '.',
           thousands: ',',
           precision: 2,
-          masked: true,
+          masked: true
         }"
       />
     </div>
@@ -28,7 +28,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Money } from "v-money";
 
 @Component({
-  components: { Money },
+  components: { Money }
 })
 export default class CurrencyInput extends Vue {
   @Prop({ type: String, required: false })

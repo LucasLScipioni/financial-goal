@@ -1,11 +1,45 @@
 <template>
   <div class="app">
     <div class="app__navbar">
-      <img src="./assets/logo/origin.svg" />
+      <img class="app__navbar-logo" src="./assets/logo/origin.svg" />
+      <div>
+        <img
+          src="./assets/icons/ic_us.svg"
+          width="50"
+          height="40"
+          class="app__navbar-flag"
+          :class="{ active: languageModule.getCurrentLanguage === 'en' }"
+          @click="changeLanguage('en')"
+        />
+        <img
+          src="./assets/icons/ic_pt.svg"
+          width="50"
+          height="40"
+          class="app__navbar-flag"
+          :class="{ active: languageModule.getCurrentLanguage === 'pt-br' }"
+          @click="changeLanguage('pt-br')"
+        />
+      </div>
     </div>
     <router-view />
   </div>
 </template>
+
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import moment from "moment";
+
+import { LanguageModule } from "@/store/language/LanguageModule";
+
+@Component({})
+export default class App extends Vue {
+  private languageModule = LanguageModule;
+
+  private changeLanguage(value: string) {
+    this.languageModule.setLanguage(value);
+  }
+}
+</script>
 
 <style lang="less">
 @import "./assets/theme/index.less";
@@ -22,8 +56,8 @@
 
   &__navbar {
     display: flex;
-    align-items: flex-start;
     align-items: center;
+    justify-content: space-between;
     height: 79px;
     padding: 0 var(--spacing-l);
     background-color: var(--theme-element-background);
@@ -32,8 +66,18 @@
     @media @mobile {
       height: 59px;
 
-      img {
+      .app__navbar-logo {
         width: 65px;
+      }
+    }
+
+    &-flag {
+      cursor: pointer;
+      transition: opacity 0.15s ease-in;
+      opacity: 0.3;
+
+      &.active {
+        opacity: 1;
       }
     }
   }

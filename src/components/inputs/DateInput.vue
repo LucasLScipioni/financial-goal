@@ -27,15 +27,17 @@
 import { Component, Prop, Vue, Ref, Emit } from "vue-property-decorator";
 import moment from "moment";
 
+import { LanguageModule } from "@/store/language/LanguageModule";
+
 @Component({
   filters: {
     month: (value: moment.Moment) => {
-      return value.format("MMMM");
+      return value.locale(LanguageModule.getCurrentLanguage).format("MMMM");
     },
     year: (value: moment.Moment) => {
-      return value.format("YYYY");
-    },
-  },
+      return value.locale(LanguageModule.getCurrentLanguage).format("YYYY");
+    }
+  }
 })
 export default class DateInput extends Vue {
   @Prop({ type: String, required: false })

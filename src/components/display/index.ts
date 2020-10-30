@@ -1,1 +1,1 @@
-export { default as GoalInformation} from './GoalInformation.vue';
+export { default as GoalInformation } from "./GoalInformation.vue";

@@ -2,24 +2,26 @@
   <div class="financial-goal">
     <p
       class="financial-goal__title"
-      v-html="this.internationalization['financial-goal-title']"
+      v-html="languageModule.getStrings['financial-goal-title']"
     />
     <div class="financial-goal__wrapper">
       <img src="@/assets/icons/ic_house.svg" />
-      <p class="financial-goal__wrapper-title">Buy a House</p>
+      <p class="financial-goal__wrapper-title">
+        {{ languageModule.getStrings["financial-goal-name"] }}
+      </p>
       <p class="financial-goal__wrapper-description">
-        {{ internationalization["financial-goal-description"] }}
+        {{ languageModule.getStrings["financial-goal-description"] }}
       </p>
 
       <div class="financial-goal__wrapper-inputs">
         <CurrencyInput
           :value="totalAmount"
           v-on:input="setTotalAmount"
-          :label="internationalization['total-amount']"
+          :label="languageModule.getStrings['total-amount']"
         ></CurrencyInput>
         <DateInput
           class="financial-goal__wrapper-date"
-          :label="internationalization['reach-goal-by']"
+          :label="languageModule.getStrings['reach-goal-by']"
           @date="setDate"
         ></DateInput>
       </div>
@@ -31,7 +33,7 @@
       ></GoalInformation>
 
       <button class="financial-goal__wrapper-button" type="submit">
-        {{ internationalization["confirm"] }}
+        {{ languageModule.getStrings["confirm"] }}
       </button>
     </div>
   </div>
@@ -43,6 +45,8 @@ import moment from "moment";
 
 import { CurrencyInput, DateInput } from "@/components/inputs";
 import { GoalInformation } from "@/components/display";
+
+import { LanguageModule } from "@/store/language/LanguageModule";
 
 @Component({
   components: {
@@ -58,14 +62,7 @@ export default class FinancialGoal extends Vue {
   private goalDate = moment();
   private monthlyDeposits = 0;
 
-  private internationalization = {
-    "financial-goal-title": "Let's plan your <strong>saving goal</strong>.",
-    "financial-goal-description": "Saving goal",
-    "total-amount": "Total Amount",
-    "reach-goal-by": "Reach goal By",
-    "financial-goal-cost-title": "Monthly Amount",
-    confirm: "Confirm",
-  };
+  private languageModule = LanguageModule;
 
   private setTotalAmount(value: string) {
     this.totalAmount = value;
