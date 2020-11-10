@@ -36,18 +36,27 @@ import { LanguageModule } from "@/store/language/LanguageModule";
     },
     year: (value: moment.Moment) => {
       return value.locale(LanguageModule.getCurrentLanguage).format("YYYY");
-    }
-  }
+    },
+  },
 })
 export default class DateInput extends Vue {
   @Prop({ type: String, required: false })
   private label?: string;
+
+  @Prop(Object)
+  private currentSelectedDate?: moment.Moment;
 
   @Ref()
   private readonly input!: HTMLInputElement;
 
   private choosenDate = moment();
   private today = moment();
+
+  private created() {
+    if (this.currentSelectedDate) {
+      this.choosenDate = this.currentSelectedDate;
+    }
+  }
 
   private focusInput() {
     this.input.focus();

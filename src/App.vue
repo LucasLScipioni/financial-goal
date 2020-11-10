@@ -29,11 +29,18 @@
 import { Vue, Component } from "vue-property-decorator";
 import moment from "moment";
 
+import { Savings } from "@/models/saving";
 import { LanguageModule } from "@/store/language/LanguageModule";
 
 @Component({})
 export default class App extends Vue {
   private languageModule = LanguageModule;
+
+  private created() {
+    if (!localStorage.getItem("savings")) {
+      localStorage.setItem("savings", JSON.stringify(Savings));
+    }
+  }
 
   private changeLanguage(value: string) {
     this.languageModule.setLanguage(value);

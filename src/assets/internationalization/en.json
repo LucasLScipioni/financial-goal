@@ -1,11 +1,12 @@
 {
-    "financial-goal-title": "Let's plan your <strong>saving goal</strong>.",
-    "financial-goal-name": "Buy a House",
-    "financial-goal-description": "Saving goal",
-    "total-amount": "Total Amount",
-    "reach-goal-by": "Reach goal By",
-    "financial-goal-cost-title": "Monthly Amount",
-    "financial-goal-cost-title-mobile": "Monthly",
-    "financial-goal-cost-info": "You’re planning <strong>${v} monthly</strong> deposits to reach your <strong>$${v} goal</strong> by <strong>${v}</strong>",
-    "confirm": "Confirm"
+  "home-title": "Here’s your saving goals!",
+  "financial-goal-title": "Let's plan your <strong>saving goal</strong>.",
+  "financial-goal-name": "Buy a House",
+  "financial-goal-description": "Saving goal",
+  "total-amount": "Total Amount",
+  "reach-goal-by": "Reach goal By",
+  "financial-goal-cost-title": "Monthly Amount",
+  "financial-goal-cost-title-mobile": "Monthly",
+  "financial-goal-cost-info": "You’re planning <strong>${v} monthly</strong> deposits to reach your <strong>$${v} goal</strong> by <strong>${v}</strong>",
+  "confirm": "Confirm"
 }
