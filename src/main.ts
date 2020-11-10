@@ -8,8 +8,12 @@ Vue.config.productionTip = false;
 Vue.filter("currency", currency);
 Vue.filter("moment", momentFilter);
 
+// @ts-ignore
+import VueSimpleSVG from "vue-simple-svg";
+Vue.use(VueSimpleSVG);
+
 new Vue({
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");

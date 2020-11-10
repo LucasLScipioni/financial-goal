@@ -1,11 +1,12 @@
 {
-    "financial-goal-title": "Vamos planejar seu <strong>objetivo</strong>.",
-    "financial-goal-name": "Comprar uma casa",
-    "financial-goal-description": "Objetivo",
-    "total-amount": "Quantia total",
-    "reach-goal-by": "Meta alcançada em",
-    "financial-goal-cost-title": "Quantia mensal",
-    "financial-goal-cost-title-mobile": "Mensal",
-    "financial-goal-cost-info": "Você está planejando <strong>${v} depositos mensais</strong> para alcançar o <strong>objetivo de $${v}</strong> em <strong>${v}</strong>",
-    "confirm": "Confirmar"
+  "home-title": "Aqui estão seus objetivos financeiros!",
+  "financial-goal-title": "Vamos planejar seu <strong>objetivo</strong>.",
+  "financial-goal-name": "Comprar uma casa",
+  "financial-goal-description": "Objetivo",
+  "total-amount": "Quantia total",
+  "reach-goal-by": "Meta alcançada em",
+  "financial-goal-cost-title": "Quantia mensal",
+  "financial-goal-cost-title-mobile": "Mensal",
+  "financial-goal-cost-info": "Você está planejando <strong>${v} depositos mensais</strong> para alcançar o <strong>objetivo de $${v}</strong> em <strong>${v}</strong>",
+  "confirm": "Confirmar"
 }

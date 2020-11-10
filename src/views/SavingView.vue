@@ -5,9 +5,9 @@
       v-html="languageModule.getStrings['financial-goal-title']"
     />
     <div class="saving__wrapper">
-      <img src="@/assets/icons/ic_house.svg" />
+      <simple-svg :src="saving.icon"></simple-svg>
       <p class="saving__wrapper-title">
-        {{ languageModule.getStrings["financial-goal-name"] }}
+        {{ saving.name }}
       </p>
       <p class="saving__wrapper-description">
         {{ languageModule.getStrings["financial-goal-description"] }}
@@ -22,6 +22,7 @@
         <DateInput
           class="saving__wrapper-date"
           :label="languageModule.getStrings['reach-goal-by']"
+          :currentSelectedDate="goalDate"
           @date="setDate"
         ></DateInput>
       </div>
@@ -32,7 +33,7 @@
         :goalDate="goalDate"
       ></GoalInformation>
 
-      <button class="saving__wrapper-button" type="submit">
+      <button class="saving__wrapper-button" @click="saveSavingInfo">
         {{ languageModule.getStrings["confirm"] }}
       </button>
     </div>
@@ -43,6 +44,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import moment from "moment";
 
+import { Saving } from "@/models/saving";
 import { CurrencyInput, DateInput } from "@/components/inputs";
 import { GoalInformation } from "@/components/display";
 
@@ -58,11 +60,35 @@ import { LanguageModule } from "@/store/language/LanguageModule";
 export default class SavingView extends Vue {
   @Prop() private msg!: string;
 
-  private totalAmount = "0";
+  private saving?: Saving;
+
+  private totalAmount!: string;
   private goalDate = moment();
   private monthlyDeposits = 0;
 
   private languageModule = LanguageModule;
+
+  private created() {
+    if (localStorage.getItem("current-saving")) {
+      this.setSavingVariables(
+        JSON.parse(localStorage.getItem("current-saving")!) as Saving
+      );
+    } else {
+      this.$router.push({ path: "/" });
+    }
+  }
+
+  private setSavingVariables(value: Saving) {
+    this.saving = value;
+
+    this.totalAmount = this.saving!.totalAmount
+      ? this.saving!.totalAmount
+      : "0";
+
+    this.goalDate = this.saving!.reachGoal
+      ? moment(this.saving!.reachGoal)
+      : moment();
+  }
 
   private setTotalAmount(value: string) {
     this.totalAmount = value;
@@ -70,6 +96,28 @@ export default class SavingView extends Vue {
 
   private setDate(choosenDate: moment.Moment) {
     this.goalDate = choosenDate;
+  }
+
+  private saveSavingInfo() {
+    this.saving = {
+      ...this.saving!,
+      totalAmount: this.totalAmount,
+      reachGoal: this.goalDate.toISOString(),
+    };
+
+    if (localStorage.getItem("savings")) {
+      const savings = JSON.parse(localStorage.getItem("savings")!) as Saving[];
+
+      const savingIndex = savings.findIndex(
+        (element) => element.id === this.saving!.id
+      );
+
+      savings[savingIndex] = this.saving!;
+
+      localStorage.setItem("current-saving", JSON.stringify(this.saving));
+      localStorage.setItem("savings", JSON.stringify(savings));
+      this.$router.push({ path: "/" });
+    }
   }
 }
 </script>
