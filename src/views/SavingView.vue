@@ -1,38 +1,38 @@
 <template>
-  <div class="financial-goal">
+  <div class="saving">
     <p
-      class="financial-goal__title"
+      class="saving__title"
       v-html="languageModule.getStrings['financial-goal-title']"
     />
-    <div class="financial-goal__wrapper">
+    <div class="saving__wrapper">
       <img src="@/assets/icons/ic_house.svg" />
-      <p class="financial-goal__wrapper-title">
+      <p class="saving__wrapper-title">
         {{ languageModule.getStrings["financial-goal-name"] }}
       </p>
-      <p class="financial-goal__wrapper-description">
+      <p class="saving__wrapper-description">
         {{ languageModule.getStrings["financial-goal-description"] }}
       </p>
 
-      <div class="financial-goal__wrapper-inputs">
+      <div class="saving__wrapper-inputs">
         <CurrencyInput
           :value="totalAmount"
           v-on:input="setTotalAmount"
           :label="languageModule.getStrings['total-amount']"
         ></CurrencyInput>
         <DateInput
-          class="financial-goal__wrapper-date"
+          class="saving__wrapper-date"
           :label="languageModule.getStrings['reach-goal-by']"
           @date="setDate"
         ></DateInput>
       </div>
 
       <GoalInformation
-        class="financial-goal__wrapper-cost"
+        class="saving__wrapper-cost"
         :goalAmount="totalAmount"
         :goalDate="goalDate"
       ></GoalInformation>
 
-      <button class="financial-goal__wrapper-button" type="submit">
+      <button class="saving__wrapper-button" type="submit">
         {{ languageModule.getStrings["confirm"] }}
       </button>
     </div>
@@ -55,7 +55,7 @@ import { LanguageModule } from "@/store/language/LanguageModule";
     DateInput,
   },
 })
-export default class FinancialGoal extends Vue {
+export default class SavingView extends Vue {
   @Prop() private msg!: string;
 
   private totalAmount = "0";
@@ -77,7 +77,7 @@ export default class FinancialGoal extends Vue {
 <style scoped lang="less">
 @mobile: ~"only screen and (max-width: 560px)";
 
-.financial-goal {
+.saving {
   display: flex;
   flex-direction: column;
   align-items: center;
