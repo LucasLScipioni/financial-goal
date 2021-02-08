@@ -2,6 +2,7 @@
   <div class="home">
     <p class="home__title">{{ languageModule.getStrings["home-title"] }}</p>
     <div class="home__savings-wrapper">
+      <button @click="checkValue"></button>
       <SavingInfoCard
         v-for="(saving, key) in savings"
         :key="key"
@@ -17,6 +18,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Saving } from "@/models/saving";
 import SavingInfoCard from "@/components/display/SavingInfoCard.vue";
 import { LanguageModule } from "@/store/language/LanguageModule";
+import API from "@/services";
 
 @Component({
   components: {
@@ -29,11 +31,20 @@ export default class HomeView extends Vue {
   private savings: Saving[] = [];
 
   private languageModule = LanguageModule;
+  private api = API;
 
   private created() {
     if (localStorage.getItem("savings")) {
       this.savings = JSON.parse(localStorage.getItem("savings")!) as Saving[];
     }
+  }
+
+  private checkValue() {
+    this.api
+      .post("/users", { name: "bimbumbem", password: "alacazem" })
+      .then((res) => {
+        console.log("Respondeu com: ", res);
+      });
   }
 }
 </script>

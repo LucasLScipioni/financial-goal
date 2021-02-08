@@ -3,13 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "installation": "yarn install && npm install -g json-server",
+    "server": "json-server --watch db.json",
+    "app": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "json-server": "^0.16.3",
+    "axios": "^0.18.0",
     "moment": "^2.29.1",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.3",
