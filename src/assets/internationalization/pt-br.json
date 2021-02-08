@@ -8,5 +8,6 @@
   "financial-goal-cost-title": "Quantia mensal",
   "financial-goal-cost-title-mobile": "Mensal",
   "financial-goal-cost-info": "Você está planejando <strong>${v} depositos mensais</strong> para alcançar o <strong>objetivo de $${v}</strong> em <strong>${v}</strong>",
-  "confirm": "Confirmar"
+  "confirm": "Confirmar",
+  "register-title": "Registro"
 }

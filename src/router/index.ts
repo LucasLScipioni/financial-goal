@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import FinancialGoal from "../views/SavingView.vue";
-import HomeView from "../views/HomeView.vue";
+import FinancialGoal from "@/views/SavingView.vue";
+import HomeView from "@/views/HomeView.vue";
 import LoginView from "@/views/login/LoginView.vue";
-
+import RegisterView from "@/views/register/RegisterView.vue";
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
@@ -21,6 +21,11 @@ const routes: Array<RouteConfig> = [
     path: "/login",
     name: "Login",
     component: LoginView,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: RegisterView,
   },
 ];
 

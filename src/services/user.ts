@@ -15,6 +15,12 @@ export class UserAPI extends Api {
       throw { error: "no_user" };
     }
   }
+
+  public async registerUser(userData: IUser) {
+    const response = await this.post<IUser>(`/users`, userData);
+
+    return response;
+  }
 }
 
 const userSingleton = new UserAPI();

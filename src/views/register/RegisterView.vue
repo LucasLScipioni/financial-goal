@@ -1,42 +1,55 @@
 <template>
-  <div class="login">
-    <p class="login__title">{{ languageModule.getStrings["home-title"] }}</p>
-    <form @submit.prevent="userLogin" class="login__content">
-      <label>Email</label>
-      <input
-        :value="userInfo.email"
-        @input="setFormData('email', $event.target.value)"
-        v-on:blur="checkFieldError('email')"
-      />
-      <span class="login__error-message" v-if="errors['email']">{{
-        errors["email"][0]
-      }}</span>
+  <div class="register">
+    <p class="register__title">
+      {{ languageModule.getStrings["register-title"] }}
+    </p>
+    <div class="register__content">
+      <form @submit.prevent="registerUser">
+        <label>Name</label>
+        <input
+          :value="userInfo.name"
+          @input="setFormData('name', $event.target.value)"
+          v-on:blur="checkFieldError('name')"
+        />
+        <span class="register__error-message" v-if="errors['name']">{{
+          errors["name"][0]
+        }}</span>
 
-      <label>Password</label>
-      <input
-        type="password"
-        :value="userInfo.password"
-        @input="setFormData('password', $event.target.value)"
-        v-on:blur="checkFieldError('password')"
-      />
-      <span class="login__error-message" v-if="errors['password']">{{
-        errors["password"][0]
-      }}</span>
+        <label>Email</label>
+        <input
+          :value="userInfo.email"
+          @input="setFormData('email', $event.target.value)"
+          v-on:blur="checkFieldError('email')"
+        />
+        <span class="register__error-message" v-if="errors['email']">{{
+          errors["email"][0]
+        }}</span>
 
-      <button
-        :disabled="!isFormValid || loadingLogin"
-        class="login__submit"
-        type="submit"
-      >
-        <div v-if="loadingLogin" class="spin">
-          <simple-svg :src="iconLoading"></simple-svg>
-        </div>
-        <p v-else>
-          Entrar
-        </p>
-      </button>
-      <p @click="goToRegister" class="login__register">Register</p>
-    </form>
+        <label>Password</label>
+        <input
+          type="password"
+          :value="userInfo.password"
+          @input="setFormData('password', $event.target.value)"
+          v-on:blur="checkFieldError('password')"
+        />
+        <span class="register__error-message" v-if="errors['password']">{{
+          errors["password"][0]
+        }}</span>
+
+        <button
+          :disabled="!isFormValid || loadingLogin"
+          class="register__submit"
+          type="submit"
+        >
+          <div v-if="loadingLogin" class="spin">
+            <simple-svg :src="iconLoading"></simple-svg>
+          </div>
+          <p v-else>
+            Entrar
+          </p>
+        </button>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -47,7 +60,7 @@ import SavingInfoCard from "@/components/display/SavingInfoCard.vue";
 import { LanguageModule } from "@/store/language/LanguageModule";
 
 import validator from "./validate";
-import { ILoginRequest } from "@/models/user";
+import { IUser } from "@/models/user";
 import userAPI from "@/services/user";
 
 const iconLoading = require("@/assets/icons/ic_loading.svg");
@@ -57,7 +70,7 @@ const iconLoading = require("@/assets/icons/ic_loading.svg");
     SavingInfoCard,
   },
 })
-export default class LoginView extends Vue {
+export default class RegisterView extends Vue {
   private languageModule = LanguageModule;
   private userAPI = userAPI;
   private validation = validator;
@@ -66,16 +79,13 @@ export default class LoginView extends Vue {
   private iconLoading = iconLoading;
   private loadingLogin = false;
 
-  private userInfo: ILoginRequest = {
+  private userInfo: IUser = {
+    name: "",
     email: "",
     password: "",
   };
 
-  private mounted() {
-    if (this.$route.query.email) {
-      this.userInfo.email = this.$route.query!.email as string;
-    }
-
+  private created() {
     this.checkFormValidation();
   }
 
@@ -116,28 +126,17 @@ export default class LoginView extends Vue {
     }
   }
 
-  private async userLogin() {
+  private async registerUser() {
     this.loadingLogin = true;
 
     setTimeout(async () => {
-      try {
-        const response = await this.userAPI.userLogin({
-          email: this.userInfo.email,
-          password: this.userInfo.password,
-        });
-      } catch (error) {
-        const loginError = error.error;
+      const response = await this.userAPI.registerUser(this.userInfo);
 
-        if (loginError) {
-          switch (loginError) {
-            case "no_user":
-              this.errors["email"] = ["Não existe usuário com este e-mail"];
-              break;
-            case "wrong_password":
-              this.errors["password"] = ["Senha incorreta"];
-              break;
-          }
-        }
+      if (response.id) {
+        this.$router.push({
+          path: "/login",
+          query: { email: this.userInfo.email },
+        });
       }
 
       this.loadingLogin = false;
@@ -174,7 +173,7 @@ export default class LoginView extends Vue {
   animation: spin 1.2s infinite linear;
 }
 
-.login {
+.register {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -197,12 +196,26 @@ export default class LoginView extends Vue {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--spacing-xs) var(--spacing-n) var(--spacing-l);
-    width: 320px;
+    justify-content: center;
+    width: 500px;
+    height: 400px;
     box-sizing: border-box;
+    padding: var(--spacing-xs) var(--spacing-n) var(--spacing-l);
     background: var(--theme-element-background);
     border: 1px solid var(--theme-element-border);
     border-radius: 12px;
+
+    @media @tablet {
+      width: 100%;
+    }
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
 
     label {
       width: 100%;
@@ -210,7 +223,7 @@ export default class LoginView extends Vue {
       font-size: 16px;
       line-height: 24px;
       font-weight: 600;
-      margin-top: 8px;
+      margin-top: var(--spacing-n);
     }
 
     input {

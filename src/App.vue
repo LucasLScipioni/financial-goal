@@ -21,7 +21,9 @@
         />
       </div>
     </div>
-    <router-view />
+    <transition name="fade" mode="out-in">
+      <router-view :key="$route.fullPath" />
+    </transition>
   </div>
 </template>
 
@@ -51,6 +53,15 @@ export default class App extends Vue {
 <style lang="less">
 @import "./assets/theme/index.less";
 @mobile: ~"only screen and (max-width: 560px)";
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
 
 .app {
   height: 100vh;

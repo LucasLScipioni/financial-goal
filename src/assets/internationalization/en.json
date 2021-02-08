@@ -8,5 +8,6 @@
   "financial-goal-cost-title": "Monthly Amount",
   "financial-goal-cost-title-mobile": "Monthly",
   "financial-goal-cost-info": "You’re planning <strong>${v} monthly</strong> deposits to reach your <strong>$${v} goal</strong> by <strong>${v}</strong>",
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "register-title": "Register"
 }
