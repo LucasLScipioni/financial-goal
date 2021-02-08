@@ -18,7 +18,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import { Saving } from "@/models/saving";
 import SavingInfoCard from "@/components/display/SavingInfoCard.vue";
 import { LanguageModule } from "@/store/language/LanguageModule";
-import API from "@/services";
+import userAPI from "@/services/user";
 
 @Component({
   components: {
@@ -31,7 +31,7 @@ export default class HomeView extends Vue {
   private savings: Saving[] = [];
 
   private languageModule = LanguageModule;
-  private api = API;
+  private userAPI = userAPI;
 
   private created() {
     if (localStorage.getItem("savings")) {
@@ -39,12 +39,11 @@ export default class HomeView extends Vue {
     }
   }
 
-  private checkValue() {
-    this.api
-      .post("/users", { name: "bimbumbem", password: "alacazem" })
-      .then((res) => {
-        console.log("Respondeu com: ", res);
-      });
+  private async checkValue() {
+    const response = await this.userAPI.userLogin({
+      email: "teste1@teste.com",
+      password: "alacazem",
+    });
   }
 }
 </script>

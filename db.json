@@ -3,7 +3,16 @@
     {
       "name": "bimbumbem",
       "password": "alacazem",
+      "birthDate": "wow",
+      "email": "teste1@teste.com",
       "id": 1
+    },
+    {
+      "name": "bimbumbem",
+      "password": "alacazem",
+      "birthDate": "wow",
+      "email": "teste2@teste.com",
+      "id": 2
     }
   ]
 }
