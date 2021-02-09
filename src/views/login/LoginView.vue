@@ -1,8 +1,8 @@
 <template>
   <div class="login">
-    <p class="login__title">{{ languageModule.getStrings["home-title"] }}</p>
+    <p class="login__title">{{ languageModule.getStrings["login-title"] }}</p>
     <form @submit.prevent="userLogin" class="login__content">
-      <label>Email</label>
+      <label>{{ languageModule.getStrings["general-email"] }}</label>
       <input
         :value="userInfo.email"
         @input="setFormData('email', $event.target.value)"
@@ -12,7 +12,7 @@
         errors["email"][0]
       }}</span>
 
-      <label>Password</label>
+      <label>{{ languageModule.getStrings["general-password"] }}</label>
       <input
         type="password"
         :value="userInfo.password"
@@ -32,10 +32,12 @@
           <simple-svg :src="iconLoading"></simple-svg>
         </div>
         <p v-else>
-          Entrar
+          {{ languageModule.getStrings["login-button"] }}
         </p>
       </button>
-      <p @click="goToRegister" class="login__register">Register</p>
+      <p @click="goToRegister" class="login__register">
+        {{ languageModule.getStrings["login-register"] }}
+      </p>
     </form>
   </div>
 </template>
@@ -45,6 +47,7 @@ import { Component, Vue } from "vue-property-decorator";
 
 import SavingInfoCard from "@/components/display/SavingInfoCard.vue";
 import { LanguageModule } from "@/store/language/LanguageModule";
+import { UserModule } from "@/store/user/UserModule";
 
 import validator from "./validate";
 import { ILoginRequest } from "@/models/user";
@@ -59,6 +62,7 @@ const iconLoading = require("@/assets/icons/ic_loading.svg");
 })
 export default class LoginView extends Vue {
   private languageModule = LanguageModule;
+  private userModule = UserModule;
   private userAPI = userAPI;
   private validation = validator;
   private errors: any = {};
@@ -121,10 +125,13 @@ export default class LoginView extends Vue {
 
     setTimeout(async () => {
       try {
-        const response = await this.userAPI.userLogin({
+        const user = await this.userAPI.userLogin({
           email: this.userInfo.email,
           password: this.userInfo.password,
         });
+
+        this.userModule.setUser(user);
+        this.$router.push({ path: "/" });
       } catch (error) {
         const loginError = error.error;
 

@@ -12,8 +12,10 @@ Vue.filter("moment", momentFilter);
 import VueSimpleSVG from "vue-simple-svg";
 Vue.use(VueSimpleSVG);
 
-new Vue({
+const Application = new Vue({
   router,
   store,
   render: (h) => h(App),
 }).$mount("#app");
+
+export default Application;

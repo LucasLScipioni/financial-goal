@@ -5,7 +5,7 @@
     </p>
     <div class="register__content">
       <form @submit.prevent="registerUser">
-        <label>Name</label>
+        <label> {{ languageModule.getStrings["general-name"] }}</label>
         <input
           :value="userInfo.name"
           @input="setFormData('name', $event.target.value)"
@@ -15,7 +15,7 @@
           errors["name"][0]
         }}</span>
 
-        <label>Email</label>
+        <label>{{ languageModule.getStrings["general-email"] }}</label>
         <input
           :value="userInfo.email"
           @input="setFormData('email', $event.target.value)"
@@ -25,7 +25,7 @@
           errors["email"][0]
         }}</span>
 
-        <label>Password</label>
+        <label>{{ languageModule.getStrings["general-password"] }}</label>
         <input
           type="password"
           :value="userInfo.password"
@@ -45,7 +45,7 @@
             <simple-svg :src="iconLoading"></simple-svg>
           </div>
           <p v-else>
-            Entrar
+            {{ languageModule.getStrings["register-button"] }}
           </p>
         </button>
       </form>

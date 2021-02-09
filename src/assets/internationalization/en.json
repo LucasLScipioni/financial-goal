@@ -1,5 +1,10 @@
 {
-  "home-title": "Here’s your saving goals!",
+  "login-title": "Login",
+  "login-button": "Access",
+  "login-register": "Register",
+  "register-title": "Register",
+  "register-button": "Complete",
+  "home-title": "Manage your saving goals, ${v}",
   "financial-goal-title": "Let's plan your <strong>saving goal</strong>.",
   "financial-goal-name": "Buy a House",
   "financial-goal-description": "Saving goal",
@@ -9,5 +14,7 @@
   "financial-goal-cost-title-mobile": "Monthly",
   "financial-goal-cost-info": "You’re planning <strong>${v} monthly</strong> deposits to reach your <strong>$${v} goal</strong> by <strong>${v}</strong>",
   "confirm": "Confirm",
-  "register-title": "Register"
+  "general-email": "Email",
+  "general-password": "Password",
+  "general-name": "Name"
 }

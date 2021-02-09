@@ -1,8 +1,13 @@
 <template>
   <div class="home">
-    <p class="home__title">{{ languageModule.getStrings["home-title"] }}</p>
+    <p class="home__title">
+      {{
+        getVariableString(languageModule.getStrings["home-title"], [
+          getUsername,
+        ])
+      }}
+    </p>
     <div class="home__savings-wrapper">
-      <button @click="checkValue"></button>
       <SavingInfoCard
         v-for="(saving, key) in savings"
         :key="key"
@@ -14,10 +19,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-
+import { getVariableString } from "@/assets/internationalization/lib";
 import { Saving } from "@/models/saving";
+
 import SavingInfoCard from "@/components/display/SavingInfoCard.vue";
+
 import { LanguageModule } from "@/store/language/LanguageModule";
+import { UserModule } from "@/store/user/UserModule";
 import userAPI from "@/services/user";
 
 @Component({
@@ -31,6 +39,8 @@ export default class HomeView extends Vue {
   private savings: Saving[] = [];
 
   private languageModule = LanguageModule;
+  private userModule = UserModule;
+  private getVariableString = getVariableString;
   private userAPI = userAPI;
 
   private created() {
@@ -39,11 +49,8 @@ export default class HomeView extends Vue {
     }
   }
 
-  private async checkValue() {
-    const response = await this.userAPI.userLogin({
-      email: "teste1@teste.com",
-      password: "alacazem",
-    });
+  private get getUsername() {
+    return this.userModule.getUser!.name;
   }
 }
 </script>

@@ -1,11 +1,13 @@
+import { LanguageState } from "./language/LanguageModule";
+import { UserState } from "./user/UserModule";
 import Vue from "vue";
 import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
-});
+export interface RootState {
+  UserModule: UserState;
+  LanguageModule: LanguageState;
+}
+
+export default new Vuex.Store<RootState>({});

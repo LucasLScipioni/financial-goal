@@ -1,5 +1,10 @@
 {
-  "home-title": "Aqui estão seus objetivos financeiros!",
+  "login-title": "Login",
+  "login-button": "Acesso",
+  "login-register": "Registrar",
+  "register-title": "Registro",
+  "register-button": "Concluir",
+  "home-title": "Administre seus planejamentos financeiros, ${v}",
   "financial-goal-title": "Vamos planejar seu <strong>objetivo</strong>.",
   "financial-goal-name": "Comprar uma casa",
   "financial-goal-description": "Objetivo",
@@ -9,5 +14,7 @@
   "financial-goal-cost-title-mobile": "Mensal",
   "financial-goal-cost-info": "Você está planejando <strong>${v} depositos mensais</strong> para alcançar o <strong>objetivo de $${v}</strong> em <strong>${v}</strong>",
   "confirm": "Confirmar",
-  "register-title": "Registro"
+  "general-email": "Email",
+  "general-password": "Senha",
+  "general-name": "Nome"
 }
