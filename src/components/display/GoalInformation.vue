@@ -27,7 +27,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import moment from "moment";
 
-import { getVariableString } from "@/assets/internationalization/lib";
+import { getVariableString } from "@/lib/internationalization";
 import { LanguageModule } from "@/store/language/LanguageModule";
 
 @Component({})

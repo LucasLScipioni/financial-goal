@@ -3,23 +3,21 @@ import {
   Module,
   VuexModule,
   Mutation,
-  getModule
+  getModule,
 } from "vuex-module-decorators";
 
 import * as ptBr from "@/assets/internationalization/pt-br.json";
 import * as en from "@/assets/internationalization/en.json";
 
-import ILanguage from "./model";
-
 @Module({
   dynamic: true,
   namespaced: true,
   name: "LanguageModule",
-  store
+  store,
 })
 export class LanguageState extends VuexModule {
   //@ts-ignore
-  public strings?: ILanguage = en.default;
+  public strings?: any = en.default;
   public currentLanguage = "en";
 
   @Mutation
@@ -41,7 +39,7 @@ export class LanguageState extends VuexModule {
     return this.currentLanguage;
   }
 
-  public get getStrings(): ILanguage | undefined {
+  public get getStrings(): any | undefined {
     return this.strings;
   }
 }

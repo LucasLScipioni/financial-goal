@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Application from "@/main";
-import FinancialGoal from "@/views/SavingView.vue";
-import HomeView from "@/views/HomeView.vue";
+import FinancialGoal from "@/views/saving/SavingView.vue";
+import HomeView from "@/views/home/HomeView.vue";
 import LoginView from "@/views/login/LoginView.vue";
 import RegisterView from "@/views/register/RegisterView.vue";
 Vue.use(VueRouter);

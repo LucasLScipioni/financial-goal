@@ -19,10 +19,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { getVariableString } from "@/assets/internationalization/lib";
+import { getVariableString } from "@/lib/internationalization";
 import { Saving } from "@/models/saving";
 
-import SavingInfoCard from "@/components/display/SavingInfoCard.vue";
+import { SavingInfoCard } from "@/components/display";
 
 import { LanguageModule } from "@/store/language/LanguageModule";
 import { UserModule } from "@/store/user/UserModule";

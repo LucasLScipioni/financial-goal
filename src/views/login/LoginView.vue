@@ -45,7 +45,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-import SavingInfoCard from "@/components/display/SavingInfoCard.vue";
+import { SavingInfoCard } from "@/components/display";
 import { LanguageModule } from "@/store/language/LanguageModule";
 import { UserModule } from "@/store/user/UserModule";
 
