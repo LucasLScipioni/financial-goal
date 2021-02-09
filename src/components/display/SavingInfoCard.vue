@@ -1,11 +1,11 @@
 <template>
-  <div class="saving-info">
+  <div class="saving-info" @click="redirectToSaving">
     <div class="saving-info__icon-wrapper">
       <simple-svg :src="saving.icon"></simple-svg>
     </div>
     <p class="saving-info__title">{{ saving.name }}</p>
     <div class="saving-info__button-wrapper" v-if="!savingIsSet">
-      <button class="saving-info__button" @click="redirectToSaving">
+      <button class="saving-info__button">
         Start Setup
       </button>
     </div>
@@ -60,6 +60,7 @@ export default class SavingInfoCard extends Vue {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
   padding: 32px 22px;
   width: 272px;
   height: 208px;
@@ -67,6 +68,10 @@ export default class SavingInfoCard extends Vue {
   background: var(--theme-element-background);
   border: 1px solid var(--theme-element-border);
   border-radius: 12px;
+
+  * {
+    cursor: pointer;
+  }
 
   @media @mobile {
     width: 100%;
@@ -94,7 +99,6 @@ export default class SavingInfoCard extends Vue {
 
   &__button {
     width: 100%;
-    cursor: pointer;
     border: none;
     align-self: center;
     border-radius: 32px;

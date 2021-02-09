@@ -49,6 +49,7 @@ import { CurrencyInput, DateInput } from "@/components/inputs";
 import { GoalInformation } from "@/components/display";
 
 import { LanguageModule } from "@/store/language/LanguageModule";
+import { UserModule } from "@/store/user/UserModule";
 
 @Component({
   components: {
@@ -67,6 +68,7 @@ export default class SavingView extends Vue {
   private monthlyDeposits = 0;
 
   private languageModule = LanguageModule;
+  private userModule = UserModule;
 
   private created() {
     if (localStorage.getItem("current-saving")) {
@@ -92,10 +94,12 @@ export default class SavingView extends Vue {
 
   private setTotalAmount(value: string) {
     this.totalAmount = value;
+    this.$forceUpdate();
   }
 
   private setDate(choosenDate: moment.Moment) {
     this.goalDate = choosenDate;
+    this.$forceUpdate();
   }
 
   private saveSavingInfo() {
@@ -105,19 +109,19 @@ export default class SavingView extends Vue {
       reachGoal: this.goalDate.toISOString(),
     };
 
-    if (localStorage.getItem("savings")) {
-      const savings = JSON.parse(localStorage.getItem("savings")!) as Saving[];
+    let user = this.userModule.getUser!;
+    const savings = user.savings;
 
-      const savingIndex = savings.findIndex(
-        (element) => element.id === this.saving!.id
-      );
+    const savingIndex = savings.findIndex(
+      (element) => element.id === this.saving!.id
+    );
 
-      savings[savingIndex] = this.saving!;
+    savings[savingIndex] = this.saving!;
+    user = { ...user, savings };
 
-      localStorage.setItem("current-saving", JSON.stringify(this.saving));
-      localStorage.setItem("savings", JSON.stringify(savings));
-      this.$router.push({ path: "/" });
-    }
+    localStorage.setItem("current-saving", JSON.stringify(this.saving));
+    this.userModule.setUser(user);
+    this.$router.push({ path: "/" });
   }
 }
 </script>

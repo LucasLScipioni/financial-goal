@@ -1,9 +1,46 @@
 {
   "users": [
     {
-      "name": "teste",
-      "password": "teste1",
+      "name": "teste1",
       "email": "teste1@teste.com",
+      "password": "teste1",
+      "savings": [
+        {
+          "id": "01",
+          "name": "Go to College",
+          "icon": "/img/ic_go_to_college.ec2983ef.svg"
+        },
+        {
+          "id": "02",
+          "name": "Take a Vacation",
+          "icon": "/img/ic_take_a_vacation.9d7dcd2d.svg"
+        },
+        {
+          "id": "03",
+          "name": "Buy a Car",
+          "icon": "/img/ic_buy_a_car.6a2eb684.svg"
+        },
+        {
+          "id": "04",
+          "name": "Throw a Wedding Party",
+          "icon": "/img/ic_throw_a_wedding_party.cefaf82a.svg"
+        },
+        {
+          "id": "05",
+          "name": "Build an Emergency fund",
+          "icon": "/img/ic_build_an_emergency_fund.1f22fbee.svg"
+        },
+        {
+          "id": "06",
+          "name": "Have a Baby",
+          "icon": "/img/ic_have_a_baby.dd76d8fc.svg"
+        },
+        {
+          "id": "07",
+          "name": "Buy a House",
+          "icon": "/img/ic_buy_a_house.cd364255.svg"
+        }
+      ],
       "id": 1
     }
   ]

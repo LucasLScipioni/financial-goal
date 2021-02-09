@@ -9,7 +9,7 @@
     </p>
     <div class="home__savings-wrapper">
       <SavingInfoCard
-        v-for="(saving, key) in savings"
+        v-for="(saving, key) in getUserSavings"
         :key="key"
         :saving="saving"
       ></SavingInfoCard>
@@ -43,14 +43,12 @@ export default class HomeView extends Vue {
   private getVariableString = getVariableString;
   private userAPI = userAPI;
 
-  private created() {
-    if (localStorage.getItem("savings")) {
-      this.savings = JSON.parse(localStorage.getItem("savings")!) as Saving[];
-    }
-  }
-
   private get getUsername() {
     return this.userModule.getUser!.name;
+  }
+
+  private get getUserSavings() {
+    return this.userModule.getUser!.savings;
   }
 }
 </script>

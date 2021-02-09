@@ -62,6 +62,7 @@ import { LanguageModule } from "@/store/language/LanguageModule";
 import validator from "./validate";
 import { IUser } from "@/models/user";
 import userAPI from "@/services/user";
+import { Savings } from "@/models/saving";
 
 const iconLoading = require("@/assets/icons/ic_loading.svg");
 
@@ -83,6 +84,7 @@ export default class RegisterView extends Vue {
     name: "",
     email: "",
     password: "",
+    savings: Savings,
   };
 
   private created() {

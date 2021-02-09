@@ -44,12 +44,6 @@ export default class App extends Vue {
   private languageModule = LanguageModule;
   private userModule = UserModule;
 
-  private created() {
-    if (!localStorage.getItem("savings")) {
-      localStorage.setItem("savings", JSON.stringify(Savings));
-    }
-  }
-
   private changeLanguage(value: string) {
     this.languageModule.setLanguage(value);
   }
