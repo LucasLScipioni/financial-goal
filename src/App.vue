@@ -4,7 +4,7 @@
       <img
         class="app__navbar-logo"
         @click="goToHome"
-        src="./assets/icons/ic_buy_a_house.svg"
+        :src="homeIcon"
       />
       <div>
         <img
@@ -47,6 +47,8 @@ export default class App extends Vue {
   private changeLanguage(value: string) {
     this.languageModule.setLanguage(value);
   }
+
+  private homeIcon = require('@/assets/icons/ic_buy_a_house.svg');
 
   private goToHome() {
     if (this.userModule.getUser) {

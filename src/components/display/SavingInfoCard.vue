@@ -1,7 +1,7 @@
 <template>
   <div class="saving-info" @click="redirectToSaving">
     <div class="saving-info__icon-wrapper">
-      <simple-svg :src="saving.icon"></simple-svg>
+      <simple-svg v-if="icon" :src="icon"></simple-svg>
     </div>
     <p class="saving-info__title">{{ saving.name }}</p>
     <div class="saving-info__button-wrapper" v-if="!savingIsSet">
@@ -40,6 +40,12 @@ export default class SavingInfoCard extends Vue {
   private saving?: Saving;
 
   private languageModule = LanguageModule;
+
+  icon = '';
+
+  mounted() {
+    this.icon = require(`@/assets/icons/${this.saving!.icon!}`);
+  }
 
   private redirectToSaving() {
     localStorage.setItem("current-saving", JSON.stringify(this.saving));
