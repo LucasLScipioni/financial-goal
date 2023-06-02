@@ -24,6 +24,12 @@
           @click="changeLanguage('pt-br')"
         />
       </div>
+
+      <ReactWrapper
+         :component="HelloWorldComponent"
+         title="Well Hello there"
+         :respondFunction="respondFunction"
+       />
     </div>
     <transition name="fade" mode="out-in">
       <router-view :key="$route.fullPath" />
@@ -38,8 +44,15 @@ import moment from "moment";
 import { Savings } from "@/models/saving";
 import { LanguageModule } from "@/store/language/LanguageModule";
 import { UserModule } from "@/store/user/UserModule";
+import ReactWrapper from "@/components/React/ReactWrapper.vue"
 
-@Component({})
+import { HelloWorld } from "@/react-migration/HelloWorld";
+
+@Component({
+  components: {
+    ReactWrapper,
+  },
+})
 export default class App extends Vue {
   private languageModule = LanguageModule;
   private userModule = UserModule;
@@ -56,6 +69,14 @@ export default class App extends Vue {
     } else {
       this.$router.push({ path: "/login" });
     }
+  }
+
+  private respondFunction() {
+    alert("We have responded");
+  }
+
+  get HelloWorldComponent() {
+    return HelloWorld;
   }
 }
 </script>
