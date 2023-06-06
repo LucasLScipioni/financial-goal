@@ -7,6 +7,12 @@
         ])
       }}
     </p>
+    <button @click="changeUserName">Vue Button</button>
+    <ReactWrapper
+         :component="HelloWorldComponent"
+         title="My prop title"
+         :respondFunction="respondFunction"
+       />
     <div class="home__savings-wrapper">
       <SavingInfoCard
         v-for="(saving, key) in getUserSavings"
@@ -28,9 +34,13 @@ import { LanguageModule } from "@/store/language/LanguageModule";
 import { UserModule } from "@/store/user/UserModule";
 import userAPI from "@/services/user";
 
+import ReactWrapper from "@/components/React/ReactWrapper.vue"
+import { HelloWorld } from "@/react-migration/HelloWorld";
+
 @Component({
   components: {
     SavingInfoCard,
+    ReactWrapper
   },
 })
 export default class HomeView extends Vue {
@@ -44,11 +54,26 @@ export default class HomeView extends Vue {
   private userAPI = userAPI;
 
   private get getUsername() {
-    return this.userModule.getUser!.name;
+    return this.userModule.getUser?.name;
   }
 
   private get getUserSavings() {
-    return this.userModule.getUser!.savings;
+    return this.userModule.getUser?.savings;
+  }
+
+  private changeUserName() {
+    this.userModule.setUser({
+      ...this.userModule.getUser!,
+      name: 'Vue Editted Username'
+    })
+  }
+
+  private respondFunction() {
+    alert("Alert from VUE being called in React");
+  }
+
+  get HelloWorldComponent() {
+    return HelloWorld;
   }
 }
 </script>

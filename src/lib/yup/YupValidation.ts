@@ -23,7 +23,7 @@ export default class YupValidation<T> {
       await this.schema.validate(data, { abortEarly: abortOnFirstError });
 
       return true;
-    } catch (err) {
+    } catch (err: any) {
       this.errors = this.getErrors(err);
 
       throw this.errors;

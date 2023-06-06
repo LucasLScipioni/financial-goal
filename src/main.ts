@@ -10,6 +10,8 @@ Vue.filter("moment", momentFilter);
 
 // @ts-ignore
 import VueSimpleSVG from "vue-simple-svg";
+import { UserModule } from "./store/user/UserModule";
+import { LanguageModule } from "./store/language/LanguageModule";
 Vue.use(VueSimpleSVG);
 
 const Application = new Vue({
@@ -17,5 +19,10 @@ const Application = new Vue({
   store,
   render: (h) => h(App),
 }).$mount("#app");
+
+export const VueStoreModules = {
+  user: UserModule,
+  language: LanguageModule
+}
 
 export default Application;

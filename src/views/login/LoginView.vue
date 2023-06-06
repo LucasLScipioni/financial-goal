@@ -97,7 +97,7 @@ export default class LoginView extends Vue {
       await this.validation.validate(this.userInfo, false);
 
       this.errors = {};
-    } catch (errors) {
+    } catch (errors: any) {
       const currentFieldHasError = errors[fieldName];
 
       this.errors[fieldName] = currentFieldHasError ? errors[fieldName] : null;
@@ -110,7 +110,7 @@ export default class LoginView extends Vue {
       await this.validation.validate(this.userInfo, false);
 
       this.errors = {};
-    } catch (errors) {
+    } catch (errors: any) {
       const specificFieldHasNoError =
         removeErrorFromSpecificField && !errors[removeErrorFromSpecificField];
       if (specificFieldHasNoError) {
@@ -132,7 +132,7 @@ export default class LoginView extends Vue {
 
         this.userModule.setUser(user);
         this.$router.push({ path: "/" });
-      } catch (error) {
+      } catch (error: any) {
         const loginError = error.error;
 
         if (loginError) {

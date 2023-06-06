@@ -14,7 +14,7 @@ import {
   store,
 })
 export class UserState extends VuexModule {
-  public user?: IUser;
+  public user: IUser = {} as IUser;
 
   @Mutation
   public setUser(user: IUser) {

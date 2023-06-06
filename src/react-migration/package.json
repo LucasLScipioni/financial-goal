@@ -1,0 +1,7 @@
+{
+  "name": "react-migration",
+  "version": "1",
+  "description": "react migration",
+  "main": "index.js",
+  "license": "MIT"
+}
